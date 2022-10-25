@@ -1,0 +1,26 @@
+
+
+package mctsSnake;
+
+import snakes.Bot;
+import snakes.Coordinate;
+import snakes.Direction;
+import snakes.Snake;
+
+public class MCTSSnake {//implements Bot, Runnable {
+
+     /* Smart snake bot (brain of your snake) should choose step (direction where to go)
+     * on each game step until the end of game
+     *
+     * @param snake    Your snake's body with coordinates for each segment
+     * @param opponent Opponent snake's body with coordinates for each segme
+     * @param mazeSize Size of the board
+     * @param apple    Coordinate of an apple
+     * @return Direction in which snake should crawl next game step
+     */
+    public Direction chooseDirection(final Snake snake, final Snake opponent,
+                                     final Coordinate mazeSize, final Coordinate apple){
+        return Direction.DOWN;
+    }
+}
+

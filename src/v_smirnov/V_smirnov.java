@@ -50,7 +50,7 @@ public class V_smirnov implements Bot {
             int myDistance = Manhattan(head, apple);
             int opponentDistance = Manhattan(opponent.getHead(), apple);
             Random random = new Random();
-            if (opponentDistance > myDistance || opponentDistance == myDistance && random.nextInt() % 2 == 0) {
+            if (opponentDistance > myDistance || opponentDistance == myDistance && random.nextInt(2) % 2 == 0) {
                 Arrays.sort(notLosing, new SortByManhattanDistance(apple, head));
             } else {
                 //Coordinate opposite = new Coordinate(mazeSize.x - apple.x, mazeSize.y - apple.y);
