@@ -26,6 +26,9 @@ public class SnakesUIMain {
             System.exit(1);
         }
 
+        System.out.println("Hello World ");
+
+        // Create the 
         ArrayList<Class<? extends Bot>> bots = new ArrayList<>();
         BotLoader loader = new BotLoader();
 
