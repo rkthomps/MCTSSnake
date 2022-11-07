@@ -1,10 +1,11 @@
-package monteCarloTreeSnake;
+package mcts;
 
 import java.util.Deque;
 import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import snakes.Bot;
 // import snakes.Bot;
 import snakes.Coordinate;
 import snakes.Direction;
@@ -50,7 +51,7 @@ class Move
     }
 }
 
-public class MCTSSnake {//implements Bot, Runnable {
+public class MCTSSnake implements Bot {//implements Bot, Runnable {
 
      /* Smart snake bot (brain of your snake) should choose step (direction where to go)
      * on each game step until the end of game
@@ -148,7 +149,7 @@ public class MCTSSnake {//implements Bot, Runnable {
     // * add to either snake or opponent wins if terminal state, else nothing
     // * recursively call itself on parent unless parent is root node
 
-
+    @Override
     public Direction chooseDirection(final Snake snake, final Snake opponent,
                                      final Coordinate mazeSize, final Coordinate apple){
         // create root

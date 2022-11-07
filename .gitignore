@@ -9,3 +9,4 @@ production/
 *.iws
 logs
 /bin/
+.vscode/launch.json

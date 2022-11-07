@@ -1,0 +1,6 @@
+MCTSSnake vs SampleBot : 0 - 1 (Time taken: 2.503)
+
+-------------------------------------------
+
+MCTSSnake earned: 0
+SampleBot earned: 1

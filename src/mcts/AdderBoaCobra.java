@@ -1,4 +1,4 @@
-package monteCarloTreeSnake;
+package mcts;
 
 import snakes.Bot;
 import snakes.Coordinate;
