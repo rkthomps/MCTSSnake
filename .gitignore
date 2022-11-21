@@ -10,4 +10,7 @@ production/
 logs*
 target/
 THEBOTLOG.txt
+packages.txt
+sources.txt
+*.DS_Store
 
