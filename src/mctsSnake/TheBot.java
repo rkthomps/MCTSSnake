@@ -19,9 +19,9 @@ import snakes.Direction;
 public class TheBot implements Bot {
 
     private final int APPLE_CHANGE_TIME = 10;
-    private final double DECISION_TIME = 0.1e9;
+    private final double DECISION_TIME = 0.95e9;
     private final int MAX_DEPTH = 10;
-    private final double APPLE_REWARD = 0;
+    private final double APPLE_REWARD = 0.5;
     private final double GAME_REWARD = 1;
     private Random rnd = new Random();
     private BufferedWriter outBuffer;
@@ -46,6 +46,10 @@ public class TheBot implements Bot {
 
 
     /*
+      This version of chooseDirection uses the rolloutPolicy to impelment MCTS.
+      Below is a version of chooseDirection that plays Snakes using solely the
+      rollout policy. Exactly one of these versions should be commented out. 
+     */
     @Override
     public Direction chooseDirection(Snake snake, Snake opponent, Coordinate mazeSize,
 				     Coordinate apple){
@@ -78,11 +82,16 @@ public class TheBot implements Bot {
 	} catch (IOException e) {}
 	return chosenDir;
     }
-    */
 
 
 
-    @Override
+
+    /*
+      Implements RolloutPolicySnake. Exactly one chooseDirection function should be
+      commented out (this one or the one above)
+     */
+    /*
+    @Override      
     public Direction chooseDirection(Snake snake, Snake opponent, Coordinate mazeSize,
 				     Coordinate apple){
 	boolean[] constraints = new boolean[Node.NUM_OPTIONS];
@@ -94,6 +103,7 @@ public class TheBot implements Bot {
 	int nextMove = greedyPolicy(snake, rowPrevCurDir[CUR], constraints, apple);
 	return toDirection(nextMove, rowPrevCurDir[CUR]);
     }
+    */
 
     
 
