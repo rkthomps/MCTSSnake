@@ -26,4 +26,5 @@ We implement Monte Carlo Tree Search (MCTS) for the game Snakes. We focus on Sna
 
 
 ## Demos
-
+### Rollout-Policy-Guided Snake
+![](demos/rollout-policy-demo.gif)
