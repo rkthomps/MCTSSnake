@@ -28,3 +28,16 @@ We implement Monte Carlo Tree Search (MCTS) for the game Snakes. We focus on Sna
 ## Demos
 ### Rollout-Policy-Guided Snake
 ![](demos/rollout-policy-demo.gif)
+*Notes*: By "rollout-policy" we mean that this snake is following the exact policy used to do MCTS rollouts. It proceeds to the square with
+  the smallest Manhatten distance to the apple. It does not go to squares where it will die with certainty unless there are no other options.
+
+### MCTS Snake
+![](demos/mcts-demo.gif)
+*Notes* This snake implements the UCT algorithm to choose its next move. It's default policy is the rollout policy depicted above. As you can see the MCTS snake acts somewhat unintuitively. It only goes for apples that are extremely nearby.
+  
+## ToDo List (If you contribute a new feature, please make a new java package (folder in the src file) and add its description to the README)
+- We could try to use Manhatten Distance as a "prior probability" and implement PUCT in hopes that our snakes would be more likely to go towards apples.
+- We can implement a Human Bot interface that allows humans to play against our snakes. Doing so should only require listening for arrow keys and proceeding forward if no arrow key is "heard". 
+- We must evaluate our final snake in a tournament against finalBot.AdderBoaCobra. 
+- We can optionally evaluate variations (or ablations) of our final snake against eachother and against finalBot.AdderBoaCobra. 
+ 
