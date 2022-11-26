@@ -25,6 +25,10 @@ We implement Monte Carlo Tree Search (MCTS) for the game Snakes. We focus on Sna
 - `Node`: This module implements a single node in the MCTS search tree along with its functionality.
 
 
+### humanBot Package
+- `humanBot`: Implementation of a bot that human players can use with the arrow keys in order to play against an AI snake agent. If no move is detected from the user, then the snake will continue moving forward.
+
+
 ## Demos
 ### Rollout-Policy-Guided Snake
 ![](demos/rollout-policy-demo.gif)
@@ -39,7 +43,6 @@ We implement Monte Carlo Tree Search (MCTS) for the game Snakes. We focus on Sna
   
 ## ToDo List (If you contribute a new feature, please make a new java package (folder in the src file) and add its description to the README)
 - We could try to use Manhatten Distance as a "prior probability" and implement PUCT in hopes that our snakes would be more likely to go towards apples.
-- We can implement a Human Bot interface that allows humans to play against our snakes. Doing so should only require listening for arrow keys and proceeding forward if no arrow key is "heard". 
 - We must evaluate our final snake in a tournament against finalBot.AdderBoaCobra. 
 - We can optionally evaluate variations (or ablations) of our final snake against eachother and against finalBot.AdderBoaCobra. 
  

@@ -19,7 +19,7 @@ import snakes.Direction;
 public class TheBot implements Bot {
 
     private final int APPLE_CHANGE_TIME = 10;
-    private final double DECISION_TIME = 0.95e9;
+    private final double DECISION_TIME = 0.88e9;
     private final int MAX_DEPTH = 10;
     private final double APPLE_REWARD = 0.5;
     private final double GAME_REWARD = 1;
