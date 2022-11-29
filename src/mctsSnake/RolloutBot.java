@@ -16,13 +16,10 @@ import snakes.Snake;
 import snakes.Bot;
 import snakes.Direction;
 
-public class TheBot implements Bot {
+public class RolloutBot implements Bot {
 
     private final int APPLE_CHANGE_TIME = 10;
     private final double DECISION_TIME = 0.88e9;
-    private final int MAX_DEPTH = 10;
-    private final double APPLE_REWARD = 0.5;
-    private final double GAME_REWARD = 1;
     private Random rnd = new Random();
     private BufferedWriter outBuffer;
     
@@ -37,159 +34,34 @@ public class TheBot implements Bot {
 
     private int numRollouts = 0;
 
-    public TheBot(){
+    public RolloutBot(){
 	try {
 	    outBuffer =
 		new BufferedWriter(new FileWriter("TheBotLog.txt"));
 	} catch (IOException e){}
     }
 
-
     /*
-      This version of chooseDirection uses the rolloutPolicy to impelment MCTS.
-      Below is a version of chooseDirection that plays Snakes using solely the
-      rollout policy. Exactly one of these versions should be commented out. 
+      Implements RolloutPolicySnake. Exactly one chooseDirection function should be
+      commented out (this one or the one above)
      */
-    @Override
+    @Override      
     public Direction chooseDirection(Snake snake, Snake opponent, Coordinate mazeSize,
 				     Coordinate apple){
+	boolean[] constraints = new boolean[Node.NUM_OPTIONS];
 	Direction[] rowPrevCurDir = getPrevCurDirection(snake);
 	Direction[] colPrevCurDir = getPrevCurDirection(opponent);
-	
-	int rowSnakeMove = toRelativeDirection(rowPrevCurDir[PREV], rowPrevCurDir[CUR]);
-	int colSnakeMove = toRelativeDirection(colPrevCurDir[PREV], colPrevCurDir[CUR]);
-	//controller.moveRoot(rowSnakeMove, colSnakeMove);
-	controller = new Controller();
-	
-
-	updateGameState(snake, opponent, apple);
-	long startTime = System.nanoTime();
-	long timeDelta;
-	numRollouts = 0;
-	while(true){
-	    timeDelta = System.nanoTime() - startTime;
-	    if (timeDelta >= DECISION_TIME)
-		break;
-	    rollout(snake, opponent, mazeSize, apple, controller);
-	    numRollouts++;
-	}
-	int[] finalMoves = controller.getFinalMoves();
-	Direction chosenDir = toDirection(finalMoves[Controller.ROW_MOVE], rowPrevCurDir[CUR]);
-	try{
-	    outBuffer.write(String.format("Current Direction: " + rowPrevCurDir[CUR] + "\n"));
-	    outBuffer.write(String.format("Chosen Direction: " + chosenDir + "\n"));
-	    outBuffer.flush();
-	} catch (IOException e) {}
-	return chosenDir;
+	if (!fillConstraints(snake, rowPrevCurDir[CUR], opponent, colPrevCurDir[CUR],
+			     mazeSize, apple, constraints))
+	    return Direction.UP;
+	int nextMove = greedyPolicy(snake, rowPrevCurDir[CUR], constraints, apple);
+	return toDirection(nextMove, rowPrevCurDir[CUR]);
     }
 
 
     public int getNumRollouts(){return numRollouts;}
     public Controller getController(){return controller;}
 
-
-    /*
-      Perform a single rollout 
-     */
-    private void rollout(Snake snake, Snake opponent, Coordinate mazeSize,
-			 Coordinate apple, Controller controller){
-	int curDepth = 0;
-	boolean defaultPolicy = false;
-	boolean[] rowConstraints = new boolean[Node.NUM_OPTIONS];
-	boolean[] colConstraints = new boolean[Node.NUM_OPTIONS];
-	Snake rowSnake = snake.clone();
-	Snake colSnake = opponent.clone();
-	Direction[] rowPrevCurDir;
-	Direction[] colPrevCurDir;
-	double colScore = 0;
-	double rowScore = 0;
-	boolean gameOver = false;
-	int[] nextMove = new int[Controller.RETURN_SIZE];
-	int appleCountDown = timeUntilAppleChange;
-	boolean rowDead = false;
-	boolean colDead = false;
-
-	ArrayList<Integer> defaultMoves = new ArrayList<>();
-	for (int i = 0; i < Node.NUM_OPTIONS; i++)
-	    defaultMoves.add(i);
-	
-	while (curDepth < MAX_DEPTH) {
-	    rowPrevCurDir = getPrevCurDirection(snake);
-	    colPrevCurDir = getPrevCurDirection(opponent);
-
-	    // --------- Build Move Constraints ----------
-	    if (!fillConstraints(rowSnake, rowPrevCurDir[CUR], colSnake,
-				 colPrevCurDir[CUR], mazeSize, apple, rowConstraints)){
-		rowDead = true;
-		gameOver = true;
-	    }
-	    
-	    if (!fillConstraints(colSnake, colPrevCurDir[CUR], rowSnake,
-				 rowPrevCurDir[CUR], mazeSize, apple, colConstraints)){
-		colDead = true;
-		gameOver = true;
-	    }
-	    if (gameOver)
-		break;
-
-
-	    // ------------ Get next move -----------------
-	    if (defaultPolicy){
-		// Random Rollouts
-		/*
-		nextMove[Controller.ROW_MOVE] = randomPolicy(defaultMoves, rowConstraints);
-		nextMove[Controller.COL_MOVE] = randomPolicy(defaultMoves, colConstraints);
-		nextMove[Controller.LEAF_NODE] = 1;
-		*/
-
-		// Greedy Rollouts (TODO IMPLEMENT GREEDY POLICY)
-
-		nextMove[Controller.ROW_MOVE] = greedyPolicy(rowSnake, rowPrevCurDir[CUR],
-							     rowConstraints, apple);
-		nextMove[Controller.COL_MOVE] = greedyPolicy(colSnake, colPrevCurDir[CUR],
-							     colConstraints, apple);
-		nextMove[Controller.LEAF_NODE] = 1;
-
-
-	    } else {
-		nextMove = controller.nextMove(rowConstraints, colConstraints);
-	    }
-
-	    // ----------- Run Game Step ------------
-	    Direction rowDir = toDirection(nextMove[Controller.ROW_MOVE],
-					   rowPrevCurDir[CUR]);
-	    Direction colDir = toDirection(nextMove[Controller.COL_MOVE],
-					   colPrevCurDir[CUR]);
-	    boolean rowGrow = rowSnake.getHead().moveTo(rowDir).equals(apple);
-	    rowScore += (rowGrow ? APPLE_REWARD : 0);
-	    boolean colGrow = colSnake.getHead().moveTo(colDir).equals(apple);
-	    colScore += (colGrow ? APPLE_REWARD : 0);
-	    rowDead = !rowSnake.moveTo(rowDir, rowGrow);
-	    colDead = !colSnake.moveTo(colDir, colGrow);
-	    if (rowGrow || colGrow || apple == null || appleCountDown == 0){
-		apple = randomNonOccupiedCell(rowSnake, colSnake, mazeSize);
-		appleCountDown = APPLE_CHANGE_TIME;
-	    } else {
-		appleCountDown--;
-	    }
-	    rowDead |= rowSnake.headCollidesWith(colSnake);
-	    colDead |= colSnake.headCollidesWith(rowSnake);
-	    if (rowDead || colDead){
-		gameOver = true;
-		break;
-	    }
-	    curDepth++;
-	}
-	if (rowDead ^ colDead){
-	    rowScore += (colDead ? GAME_REWARD : 0);
-	    colScore += (rowDead ? GAME_REWARD : 0);
-	} else {
-	    boolean rowBigger = (rowSnake.body.size() - colSnake.body.size()) > 0;
-	    rowScore += (rowBigger ? GAME_REWARD : 0);
-	    colScore += (rowBigger ? 0 : GAME_REWARD);
-	}
-	controller.propogateScore((rowScore - colScore) * 1 / curDepth);
-    }
 
     private int greedyPolicy(Snake snake, Direction snakeDir, boolean[] constraints,
 			     Coordinate apple){
