@@ -19,7 +19,7 @@ MAIN_CLASS = $(SRC_DIR)snakes/SnakesUIMain.java
 
 default: main images
 
-main: sources pkgs
+main: sources pkgs target
 	$(JC) $(JC_FLAGS) $(CP_FLAG) $$(cat $(PACKAGE_LIST)) $(OUT_FLAG) $(TARGET_DIR) @$(SRC_LIST)
 
 sources:
@@ -27,6 +27,9 @@ sources:
 
 pkgs:
 	PKGS=$$(find packages/*); echo $${PKGS//[[:space:]]/:} > $(PACKAGE_LIST);
+
+target:
+	mkdir -p $(TARGET_DIR)
 
 images:
 	cp -r $(SRC_DIR)snakes/images $(TARGET_DIR)snakes/images

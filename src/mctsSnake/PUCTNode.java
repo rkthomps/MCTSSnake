@@ -8,25 +8,29 @@ import NashCalc.Equilibrium;
 import NashCalc.NashCalculator;
 
 /*
-  By convention, we will say that the row snake winning
-  corresponds to a score of 1 and the col snake winning
-  corresponds to a score of -1
+  This node is very similar to Node.java except that it stores
+  the PRIORS at every node as well. It stores the sum of the distances
+  to the apple from the node. That way, the prior is the average of the
+  distances from each of the games
  */
 
-public class Node {
+public class PUCTNode {
     public static int NUM_OPTIONS = 3;
+    public static double EXPLORE = 1.0;
+    public static double SOFT_STRENGTH = 1.0;
     
-    private Node parent; // Which node is this node's parent?
+    private PUCTNode parent; // Which node is this node's parent?
     private int rowIndex; // What is the row index of this node in the parent?
     private int colIndex; // What is the col index of this node in the parent?
-    private Node[][] children = new Node[NUM_OPTIONS][NUM_OPTIONS];
+    private PUCTNode[][] children = new PUCTNode[NUM_OPTIONS][NUM_OPTIONS];
+    private double rowLogits[] = new double[NUM_OPTIONS]; // Default value is zero
+    private double colLogits[] = new double[NUM_OPTIONS];
     private long visits = 0;
     private double score = 0;
     private boolean newlyExpanded = true; // Controller has to know. 
     private ArrayList<Integer> expandQueue = new ArrayList<>();
-    
 
-    public Node(){
+    public PUCTNode(){
 	this.parent = null;
 	this.rowIndex = -1;
 	this.colIndex = -1;
@@ -37,7 +41,7 @@ public class Node {
 
     }
 
-    public Node(Node parent, int rowIndex, int colIndex){
+    public PUCTNode(PUCTNode parent, int rowIndex, int colIndex){
 	this.parent = parent;
 	this.rowIndex = rowIndex;
 	this.colIndex = colIndex;
@@ -55,7 +59,9 @@ public class Node {
     public int getColIndex(){return colIndex;}
     public double getScore(){return score;}
     public long getVisits(){return visits;}
-    public Node getChild(int rowMove, int colMove){
+    public double[] getRowLogits() {return rowLogits;}
+    public double[] getColLogits() {return colLogits;}
+    public PUCTNode getChild(int rowMove, int colMove){
 	return children[rowMove][colMove];
     }
     public void setParentNull(){
@@ -71,13 +77,17 @@ public class Node {
       policy for the other snake.
 
       rowConstraints is a boolean array. True means the snake can go to the row.
-      False means the snake cannot go to the row. 
+      False means the snake cannot go to the row.
 
+      This function also recieves row and col distances
 
       I am not using a hash map because contraint arrays will not be larger
-      than size three
+      than size three.
      */
-    public Node bestChild(boolean[] rowConstraints, boolean[] colConstraints){
+    public PUCTNode bestChild(boolean[] rowConstraints, boolean[] colConstraints,
+			  double[] rowDistances, double[] colDistances){
+	rowLogits = Util.addArrs(rowLogits, rowDistances);
+	colLogits = Util.addArrs(colLogits, colDistances);
 	
 	for (int i = 0; i < expandQueue.size(); i++){
 	    int toExpand = expandQueue.get(i);
@@ -87,7 +97,7 @@ public class Node {
 		continue;
 	    if (!colConstraints[nodeCol])
 		continue;
-	    Node newNode = new Node(this, nodeRow, nodeCol);
+	    PUCTNode newNode = new PUCTNode(this, nodeRow, nodeCol);
 	    children[nodeRow][nodeCol] = newNode;
 	    expandQueue.remove(i);
 	    return newNode;
@@ -114,6 +124,9 @@ public class Node {
 	// Create payoff and visit matricies from children
 	double[][][] payoffVisits = getPayoffVisit(validRows, validCols,
 						   payoffRows, payoffCols);
+	double[] constrainedRowLogits = getLogits(rowLogits, validRows, payoffRows);
+	double[] constrainedColLogits = getLogits(colLogits, validCols, payoffCols);
+	
 	double[][] payoff = payoffVisits[0];
 	double[][] visits = payoffVisits[1];
 	
@@ -121,9 +134,10 @@ public class Node {
 	double[] rowExpected = Util.matmul(payoff, eq.getP2Policy());
 	double[] colExpected = Util.matmul(Util.transposeNegate(payoff),
 					   eq.getP1Policy());
-	double[] rowExplore = Util.calcExplore(visits, this.visits, 1.0);
-	double[] colExplore = Util.calcExplore(Util.transpose(visits),
-					       this.visits, 1.0);
+	double[] rowExplore = Util.calcPUCTExplore(visits, constrainedRowLogits, this.visits,
+						   EXPLORE, SOFT_STRENGTH);
+	double[] colExplore = Util.calcPUCTExplore(Util.transpose(visits), constrainedColLogits, this.visits,
+						   EXPLORE, SOFT_STRENGTH);
 	
 	int nextRow = Util.randomArgMax(Util.addArrs(rowExpected, rowExplore));
 	int nextCol = Util.randomArgMax(Util.addArrs(colExpected, colExplore));
@@ -150,7 +164,7 @@ public class Node {
     /*
       Gets the final best move for the rowsnake and the colsnake
     */
-    public Node getBestSuccessor(){
+    public PUCTNode getBestSuccessor(){
 	int[] validRows = new int[NUM_OPTIONS];
 	int[] validCols = new int[NUM_OPTIONS];
 	int payoffRows = 0;
@@ -197,6 +211,7 @@ public class Node {
     }
 
 
+
     /*
       ToString Method to print the search tree for debugging. 
      */
@@ -237,7 +252,7 @@ public class Node {
     private double[][][] getPayoffVisit(int[] validRows, int[] validCols,
 					int payoffRows, int payoffCols){
 	double[][][] payoffVisit = new double[2][payoffRows][payoffCols];
-	Node curChild;
+	PUCTNode curChild;
 	for (int i = 0; i < payoffRows; i++){
 	    for (int j = 0; j < payoffCols; j++){
 		curChild = children[validRows[i]][validCols[j]];
@@ -247,6 +262,14 @@ public class Node {
 	    }
 	}
 	return payoffVisit;
+    }
+
+    private double[] getLogits(double[] logits, int[] validMoves, int numMoves){
+	double[] logitResults = new double[numMoves];
+	for (int i = 0; i < numMoves; i++){
+	    logitResults[i] = logits[validMoves[i]];
+	}
+	return logitResults;
     }
 }
 

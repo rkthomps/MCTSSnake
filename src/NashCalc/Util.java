@@ -103,12 +103,71 @@ public class Util {
 	return exploreTerms;
     }
 
+
+    /*
+      This is not actually softmax, there is some modification to the logits
+      # TODO : -1 times logit
+     */
+    public static double[] softmax(double[] logits, long parentVisits, double softStrength){
+	double eulerSum = 0;
+	for (int i = 0; i < logits.length; i++){
+	    eulerSum += Math.exp(-1 * softStrength * logits[i] / parentVisits);
+	}
+	double[] weights = new double[logits.length];
+	for (int i = 0; i < logits.length; i++)
+	    weights[i] = Math.exp(-1 * softStrength * logits[i] / parentVisits) / eulerSum;
+	return weights;
+    }
+
+    
+    public static double[] calcPUCTExplore(double[][] visits, double[] logits, long parentVisits,
+					   double exploreConst, double softStrength){
+	double[] weights = softmax(logits, parentVisits, softStrength);
+	double[] exploreTerms = new double[visits.length];
+	double childVisits;
+	for (int i = 0; i < visits.length; i++){
+	    childVisits = 0;
+	    for (int j = 0; j < visits[0].length; j++){
+		childVisits += visits[i][j];
+	    }
+	    exploreTerms[i] = exploreConst * weights[i] * Math.sqrt(parentVisits) / (childVisits + 1);
+	}
+	return exploreTerms;
+    }
+
+    
     public static double[] addArrs(double[] arr1, double[] arr2){
 	double[] returnArr = new double[arr1.length];
 	for (int i = 0; i < arr1.length; i++){
 	    returnArr[i] = arr1[i] + arr2[i];
 	}
 	return returnArr;
+    }
+
+    /*
+      Sum along the first axis
+     */
+    public static double[] sumAcross(double[][] arr){
+	double[] sum = new double[arr.length];
+	for (int i = 0; i < arr.length; i++){
+	    for (int j = 0; j < arr[0].length; j++){
+		sum[i] += arr[i][j];
+	    }
+	}
+	return sum;
+    }
+
+    /*
+      Sum along the zeroth axis
+     */
+    public static double[] sumOver(double[][] arr){
+	double[] sum = new double[arr[0].length];
+	for (int i = 0; i < arr.length; i++){
+	    for (int j = 0; j < arr[0].length; j++){
+		sum[j] += arr[i][j];
+	    }
+	}
+	return sum;
     }
 
 }
