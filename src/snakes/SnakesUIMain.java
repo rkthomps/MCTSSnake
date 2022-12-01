@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class SnakesUIMain {
     private static final String LOG_DIRECTORY_PATH = "logs";
     private static FileWriter results_fw;
+    private static FileWriter dataset_fw;
     private static int[][] total_results_table;
 
     /**
@@ -31,8 +32,9 @@ public class SnakesUIMain {
 
         bots.add(loader.getBotClass(args[0]));
         bots.add(loader.getBotClass(args[1]));
+        // bots.add(loader.getBotClass(args[2]));
 
-        start_tournament_n_times(5, bots);
+        start_tournament_n_times(50, bots);
     }
 
     /**
@@ -48,10 +50,12 @@ public class SnakesUIMain {
         if (!dir.exists() && !dir.mkdirs()) {
             System.err.println("Cannot create log directory.");
         }
-        for (int i = 0; i < n; i++) {
-            System.out.println("\nTournament iteration number " + i + "\n");
+        System.out.println("iteration,winner,appleEaten0,appleEaten1,duration");
+        for (int i = 0; i < n; i++
+        ) {
+            // System.out.println("\nTournament iteration number " + i + "\n");
             results_fw = new FileWriter(String.format("%s\\iteration_%d.txt", LOG_DIRECTORY_PATH, i), false);
-            start_round_robin_tournament(bots);
+            start_round_robin_tournament(bots, i);
             results_fw.close();
         }
 
@@ -59,7 +63,7 @@ public class SnakesUIMain {
         for (int i = 0; i < bots.size(); i++)
             for (int j = i + 1; j < bots.size(); j++) {
                 if (bots.get(i) == null || bots.get(j) == null) continue;
-                System.out.println("\n" + bots.get(i).getSimpleName() + " vs. " + bots.get(j).getSimpleName() + ": " + total_results_table[i][j] + " - " + total_results_table[j][i]);
+                // System.out.println("\n" + bots.get(i).getSimpleName() + " vs. " + bots.get(j).getSimpleName() + ": " + total_results_table[i][j] + " - " + total_results_table[j][i]);
                 results_fw.write(bots.get(i).getSimpleName() + " vs. " + bots.get(j).getSimpleName() + ": " + total_results_table[i][j] + " - " + total_results_table[j][i] + "\n");
             }
         results_fw.close();
@@ -71,7 +75,7 @@ public class SnakesUIMain {
      * @throws InterruptedException Threads handler
      * @throws IOException FileWriter handler
      */
-    public static void start_round_robin_tournament(ArrayList<Class<? extends Bot>> bots) throws InterruptedException, IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+    public static void start_round_robin_tournament(ArrayList<Class<? extends Bot>> bots, int iteration) throws InterruptedException, IOException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         // init game settings
         Coordinate mazeSize = new Coordinate(14, 14);
         Coordinate head0 = new Coordinate(2, 2);
@@ -117,16 +121,29 @@ public class SnakesUIMain {
                 float time_taken = (float)(System.currentTimeMillis() - game.startTime) / 1000;
                 results_fw.write(game.name0 + " vs " + game.name1 + " : " + game.gameResult + "");
                 results_fw.write(" (Time taken: " + time_taken + ")\n");
-                System.out.print(game.name0 + " vs " + game.name1 + " : " + game.gameResult);
-                System.out.println(" (Time taken: " + time_taken + ")");
+                // System.out.print(game.name0 + " vs " + game.name1 + " : " + game.gameResult);
+                // System.out.println(" (Time taken: " + time_taken + ")");
+                // System.out.print("\n" + game.name0 + " vs " + game.name1 + " : " + game.appleEaten0 + "  " + game.appleEaten1 + "\n");
+
 
                 // add the result of the game to total points
                 points.set(playerNumber.get(i), points.get(playerNumber.get(i)) + Integer.parseInt(game.gameResult.substring(0, 1)));
                 points.set(playerNumber.get(bots.size() - i - 1), points.get(playerNumber.get(bots.size() - i - 1)) + Integer.parseInt(game.gameResult.substring(game.gameResult.length() - 1)));
 
                 // add to the total results table
+                int p1_score = Integer.parseInt(game.gameResult.substring(0, 1));
+                int p2_score = Integer.parseInt(game.gameResult.substring(game.gameResult.length() - 1));
                 total_results_table[playerNumber.get(i)][playerNumber.get(bots.size() - i - 1)] +=  Integer.parseInt(game.gameResult.substring(0, 1));
                 total_results_table[playerNumber.get(bots.size() - i - 1)][playerNumber.get(i)] += Integer.parseInt(game.gameResult.substring(game.gameResult.length() - 1));
+                String winner = "tie";
+                if(p1_score==1){
+                    winner = game.name0;
+                }else if(p2_score==1){
+                    winner = game.name1;
+                }
+                System.out.print(iteration + "," + winner + "," + game.appleEaten0 + "," + game.appleEaten1 + "," + time_taken + "\n");
+                // System.out.print(iteration + "," + game.gameResult + "," + game.appleEaten0 + "," + game.appleEaten1 + "," + time_taken);
+
             }
 
             // shuffle players in special way
@@ -151,7 +168,7 @@ public class SnakesUIMain {
         // get and print the results
         for (int i = 0; i < bots.size(); i++) {
             if (bots.get(i) == null) continue;
-            System.out.println(bots_names.get(playerNumber.get(i)) + " earned: " + points.get(playerNumber.get(i)).toString());
+            // System.out.println(bots_names.get(playerNumber.get(i)) + " earned: " + points.get(playerNumber.get(i)).toString());
             results_fw.write(bots_names.get(playerNumber.get(i)) + " earned: " + points.get(playerNumber.get(i)).toString() + "\n");
         }
     }
