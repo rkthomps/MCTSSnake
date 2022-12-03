@@ -1,0 +1,5 @@
+Loaded bot.
+Loaded class name: mctsSnake.TheBot
+Loaded bot.
+Loaded class name: mctsSnake.RolloutBot
+iteration,winner,appleEaten0,appleEaten1,duration
