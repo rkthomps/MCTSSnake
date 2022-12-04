@@ -1,79 +1,48 @@
-Loaded bot.
-Loaded class name: mctsSnake.NaiveBot
-Loaded bot.
-Loaded class name: mctsSnake.TheBot
 iteration,winner,appleEaten0,appleEaten1,duration
 0,NaiveBot,0,0,13.892
 1,NaiveBot,4,2,99.439
-NaiveBot took too long to make a decision
 2,TheBot,0,0,11.386
-Round time left (180seconds) 
-
 3,NaiveBot,8,3,182.186
 4,NaiveBot,4,1,93.059
-NaiveBot took too long to make a decision
 5,TheBot,0,0,7.8
-Round time left (180seconds) 
-
 6,TheBot,4,5,181.872
-NaiveBot took too long to make a decision
 7,TheBot,3,0,72.761
 8,NaiveBot,3,0,74.025
 9,TheBot,4,2,131.101
 10,TheBot,1,2,182.074
-Round time left (180seconds) 
-
 11,NaiveBot,6,2,181.97
-NaiveBot took too long to make a decision
 12,TheBot,3,1,119.412
 13,NaiveBot,2,0,86.68
 14,NaiveBot,6,1,165.282
 15,NaiveBot,6,3,148.571
 16,NaiveBot,1,0,70.83
-NaiveBot took too long to make a decision
 17,TheBot,0,0,5.068
-NaiveBot took too long to make a decision
 18,TheBot,5,2,138.009
 19,TheBot,10,4,180.3
 20,NaiveBot,0,0,5.365
-NaiveBot took too long to make a decision
 21,TheBot,3,1,125.301
 22,NaiveBot,3,0,86.798
 23,NaiveBot,1,0,24.872
 24,NaiveBot,2,3,95.1
-Round time left (180seconds) 
-
 25,NaiveBot,4,2,182.073
 26,NaiveBot,3,1,102.113
 27,NaiveBot,2,1,62.336
 28,NaiveBot,4,3,124.8
-NaiveBot took too long to make a decision
 29,TheBot,0,0,5.267
-NaiveBot took too long to make a decision
 30,TheBot,3,1,67.555
-Round time left (180seconds) 
-
 31,NaiveBot,4,2,181.772
-NaiveBot took too long to make a decision
 32,TheBot,2,1,23.286
 33,NaiveBot,4,1,81.922
 34,NaiveBot,2,0,42.42
 35,NaiveBot,0,0,6.516
-NaiveBot took too long to make a decision
 36,TheBot,0,0,7.481
-NaiveBot took too long to make a decision
 37,TheBot,2,3,39.787
 38,NaiveBot,3,2,61.353
-NaiveBot took too long to make a decision
 39,TheBot,3,1,127.199
-NaiveBot took too long to make a decision
 40,TheBot,0,0,5.491
-NaiveBot took too long to make a decision
 41,TheBot,1,0,5.123
-NaiveBot took too long to make a decision
 42,TheBot,3,0,56.286
 43,NaiveBot,0,0,13.696
-NaiveBot took too long to make a decision
 44,TheBot,0,0,8.35
 45,NaiveBot,0,0,4.699
 46,NaiveBot,0,0,4.675
