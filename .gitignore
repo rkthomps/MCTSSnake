@@ -11,6 +11,7 @@ logs*
 target/
 THEBOTLOG.txt
 PUCTLog.txt
+Naivelog.txt
 packages.txt
 sources.txt
 *.DS_Store

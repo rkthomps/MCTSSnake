@@ -1,0 +1,94 @@
+Loaded bot.
+Loaded class name: mctsSnake.NaiveBot
+Loaded bot.
+Loaded class name: mctsSnake.PUCTBot
+iteration,winner,appleEaten0,appleEaten1,duration
+Round time left (180seconds) 
+
+0,tie,4,4,183.55
+1,NaiveBot,0,0,4.555
+Round time left (180seconds) 
+
+2,PUCTBot,5,9,182.052
+NaiveBot took too long to make a decision
+3,PUCTBot,3,2,150.86
+Round time left (180seconds) 
+
+4,PUCTBot,6,7,182.027
+NaiveBot took too long to make a decision
+5,PUCTBot,2,4,149.163
+6,NaiveBot,4,3,104.226
+NaiveBot took too long to make a decision
+7,PUCTBot,3,5,163.777
+8,NaiveBot,2,0,50.218
+NaiveBot took too long to make a decision
+9,PUCTBot,3,4,140.457
+Round time left (180seconds) 
+
+10,NaiveBot,5,4,181.916
+Round time left (180seconds) 
+
+11,PUCTBot,3,5,181.344
+12,NaiveBot,2,1,21.741
+13,NaiveBot,2,7,90.576
+14,NaiveBot,4,4,164.517
+15,NaiveBot,5,4,94.753
+NaiveBot took too long to make a decision
+16,PUCTBot,0,0,4.987
+Round time left (180seconds) 
+
+17,NaiveBot,6,4,182.179
+NaiveBot took too long to make a decision
+18,PUCTBot,0,0,8.445
+NaiveBot took too long to make a decision
+19,PUCTBot,2,5,174.053
+20,NaiveBot,3,1,77.362
+NaiveBot took too long to make a decision
+21,PUCTBot,0,1,26.113
+Round time left (180seconds) 
+
+22,NaiveBot,2,1,181.957
+23,NaiveBot,0,0,4.248
+24,NaiveBot,1,0,21.751
+NaiveBot took too long to make a decision
+25,PUCTBot,0,0,12.068
+NaiveBot took too long to make a decision
+26,PUCTBot,3,2,152.352
+NaiveBot took too long to make a decision
+27,PUCTBot,5,5,169.475
+Round time left (180seconds) 
+
+28,NaiveBot,7,5,181.949
+NaiveBot took too long to make a decision
+29,PUCTBot,0,0,4.592
+NaiveBot took too long to make a decision
+30,PUCTBot,2,4,90.088
+31,NaiveBot,1,3,75.704
+NaiveBot took too long to make a decision
+32,PUCTBot,2,3,97.673
+NaiveBot took too long to make a decision
+33,PUCTBot,0,0,5.906
+34,NaiveBot,0,0,18.814
+35,NaiveBot,2,1,74.572
+NaiveBot took too long to make a decision
+36,PUCTBot,0,0,6.396
+37,NaiveBot,0,0,4.513
+NaiveBot took too long to make a decision
+38,PUCTBot,0,0,5.681
+NaiveBot took too long to make a decision
+39,PUCTBot,0,0,6.304
+NaiveBot took too long to make a decision
+40,PUCTBot,0,1,9.412
+NaiveBot took too long to make a decision
+41,PUCTBot,0,0,6.444
+NaiveBot took too long to make a decision
+42,PUCTBot,0,0,5.716
+NaiveBot took too long to make a decision
+43,PUCTBot,0,1,13.08
+PUCTBot took too long to make a decision
+44,NaiveBot,0,0,4.625
+45,NaiveBot,0,0,4.713
+46,NaiveBot,0,0,4.522
+47,NaiveBot,0,0,5.259
+48,NaiveBot,0,0,4.375
+49,NaiveBot,0,0,4.799

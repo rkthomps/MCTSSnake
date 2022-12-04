@@ -1,0 +1,95 @@
+Loaded bot.
+Loaded class name: mctsSnake.NaiveBot
+Loaded bot.
+Loaded class name: finalBot.AdderBoaCobra
+iteration,winner,appleEaten0,appleEaten1,duration
+Round time left (180seconds) 
+
+0,AdderBoaCobra,7,9,183.302
+Round time left (180seconds) 
+
+1,AdderBoaCobra,4,5,181.56
+2,NaiveBot,3,5,54.681
+3,NaiveBot,3,2,45.445
+Round time left (180seconds) 
+
+4,NaiveBot,10,8,181.55
+5,AdderBoaCobra,5,3,83.814
+Round time left (180seconds) 
+
+6,AdderBoaCobra,5,7,181.613
+7,NaiveBot,3,2,42.427
+8,NaiveBot,6,7,134.442
+9,AdderBoaCobra,6,8,108.855
+Round time left (180seconds) 
+
+10,AdderBoaCobra,6,7,181.525
+11,AdderBoaCobra,3,5,85.671
+12,AdderBoaCobra,6,7,169.485
+13,AdderBoaCobra,6,7,157.408
+14,NaiveBot,3,5,69.792
+15,AdderBoaCobra,2,5,108.905
+16,NaiveBot,6,7,134.023
+17,NaiveBot,5,4,81.877
+Round time left (180seconds) 
+
+18,AdderBoaCobra,3,7,181.748
+Round time left (180seconds) 
+
+19,tie,6,6,181.568
+Round time left (180seconds) 
+
+20,tie,5,5,181.485
+Round time left (180seconds) 
+
+21,NaiveBot,8,7,181.339
+22,NaiveBot,4,5,62.615
+23,tie,1,1,12.159
+24,AdderBoaCobra,6,5,156.28
+25,AdderBoaCobra,2,4,54.531
+Round time left (180seconds) 
+
+26,AdderBoaCobra,4,7,181.54
+Round time left (180seconds) 
+
+27,NaiveBot,6,5,181.539
+Round time left (180seconds) 
+
+28,tie,8,8,181.622
+29,AdderBoaCobra,3,5,161.462
+Round time left (180seconds) 
+
+30,AdderBoaCobra,8,9,181.514
+31,NaiveBot,2,1,26.25
+Round time left (180seconds) 
+
+32,tie,5,5,181.879
+Round time left (180seconds) 
+
+33,AdderBoaCobra,7,8,181.426
+34,NaiveBot,4,5,117.013
+35,NaiveBot,4,6,113.869
+36,NaiveBot,2,1,30.358
+37,NaiveBot,8,8,152.409
+38,NaiveBot,3,2,60.548
+Round time left (180seconds) 
+
+39,AdderBoaCobra,5,8,181.558
+Round time left (180seconds) 
+
+40,AdderBoaCobra,6,7,181.444
+41,NaiveBot,3,2,22.285
+Round time left (180seconds) 
+
+42,AdderBoaCobra,7,9,181.402
+43,AdderBoaCobra,3,6,140.199
+44,AdderBoaCobra,4,7,159.264
+45,tie,4,4,83.775
+46,AdderBoaCobra,5,6,146.166
+47,NaiveBot,8,9,168.36
+Round time left (180seconds) 
+
+48,NaiveBot,10,8,181.357
+Round time left (180seconds) 
+
+49,tie,5,5,181.562

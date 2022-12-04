@@ -1,0 +1,62 @@
+Loaded bot.
+Loaded class name: mctsSnake.NaiveBot
+Loaded bot.
+Loaded class name: mctsSnake.RolloutBot
+iteration,winner,appleEaten0,appleEaten1,duration
+0,NaiveBot,4,3,47.286
+1,NaiveBot,3,2,23.73
+2,NaiveBot,1,3,58.423
+3,RolloutBot,3,9,65.53
+4,NaiveBot,6,7,80.358
+5,NaiveBot,2,6,45.643
+6,NaiveBot,3,2,34.358
+7,NaiveBot,2,1,13.11
+8,RolloutBot,7,17,167.553
+9,NaiveBot,2,1,18.062
+10,NaiveBot,2,1,10.276
+11,NaiveBot,5,15,142.67
+12,NaiveBot,2,2,20.203
+13,NaiveBot,5,11,102.962
+14,NaiveBot,1,0,22.303
+15,NaiveBot,2,1,18.054
+16,NaiveBot,2,3,22.308
+NaiveBot took too long to make a decision
+17,RolloutBot,0,0,4.45
+18,NaiveBot,2,1,13.804
+19,NaiveBot,2,2,35.84
+20,RolloutBot,3,7,52.027
+21,RolloutBot,12,23,174.403
+22,NaiveBot,4,12,127.77
+23,NaiveBot,2,5,44.323
+24,RolloutBot,4,14,125.851
+25,RolloutBot,7,8,92.388
+26,NaiveBot,5,6,69.765
+27,NaiveBot,2,3,20.156
+28,NaiveBot,2,5,45.665
+29,NaiveBot,2,4,41.412
+Round time left (180seconds) 
+
+30,RolloutBot,11,12,181.6
+Round time left (180seconds) 
+
+31,RolloutBot,5,16,181.717
+32,NaiveBot,1,0,11.744
+NaiveBot took too long to make a decision
+33,RolloutBot,0,1,12.698
+34,NaiveBot,3,2,23.068
+35,tie,2,2,28.665
+36,NaiveBot,4,3,15.966
+NaiveBot took too long to make a decision
+37,RolloutBot,0,0,3.682
+38,NaiveBot,3,2,32.204
+39,NaiveBot,1,0,16.645
+40,tie,1,1,15.23
+41,NaiveBot,6,11,124.986
+42,NaiveBot,6,12,152.158
+43,NaiveBot,2,11,79.664
+44,NaiveBot,3,12,82.438
+45,NaiveBot,2,1,16.65
+46,NaiveBot,4,3,50.606
+47,NaiveBot,2,1,25.126
+48,NaiveBot,2,2,32.2
+49,NaiveBot,1,0,7.449
