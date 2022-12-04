@@ -1,0 +1,5 @@
+Loaded bot.
+Loaded class name: mctsSnake.PUCTBot
+Loaded bot.
+Loaded class name: mctsSnake.TheBot
+iteration,winner,appleEaten0,appleEaten1,duration
