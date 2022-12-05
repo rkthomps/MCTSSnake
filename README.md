@@ -1,5 +1,9 @@
 # Monte Carlo Tree Search for Snakes
 
+## Authors and Project Info
+- Authors: Kyle Thompson, Chase VanderZwan, Michael Moschitto, Deon Lillo, Cagan Sevencan, Adley Wong, Saurav Gupta
+- This project is for the CSC-580 final project at Cal Poly San Luis Obispo taught by Professor Rodrigo Canaan. 
+
 ## Overview
 We implement Monte Carlo Tree Search (MCTS) for the game Snakes. We focus on Snakes as it is described in the [2020 IEEE CoG Snakes Competition](https://sites.google.com/view/ai-snakes-game). To this end, this repository is a clone of the [Competition Implementation](https://www.google.com/url?q=https%3A%2F%2Fgithub.com%2FBeLuckyDaf%2Fsnakes-game-tutorial&sa=D&sntz=1&usg=AOvVaw2OiUQTt4ozAhKfQCXHweN7).
 
@@ -23,6 +27,9 @@ We implement Monte Carlo Tree Search (MCTS) for the game Snakes. We focus on Sna
 - `TheBot`: This module contains an implementation of the competitions `Bot` interface which is required to compete against other bots.
 - `Controller`: This module implements an intermediate entity that allows our agent to query our MCTS search tree. Otherwise we would have to store game state information in each node which would likely slow down the rollouts.
 - `Node`: This module implements a single node in the MCTS search tree along with its functionality.
+- The `TheBot`, `Controller`, and `Node` combine to define the implementation of our UCT agent (UCT explore term and Informed Selection).
+- Similarly, `PUCTBot`, `PUCTController`, and `PUCTNode` combine to define the implementation of our PUCT agent (PUCT explore term and Informed Selection). 
+- Finally, `NaiveBot`, `NaiveController`, and `NaiveNode` combine to define the implementation of our NaiveBot agent (PUCT explore term and Naive Selection).
 
 
 ### humanBot Package
@@ -39,10 +46,4 @@ We implement Monte Carlo Tree Search (MCTS) for the game Snakes. We focus on Sna
 ### MCTS Snake
 ![](demos/mcts-demo.gif)
   
-*Notes* This snake implements the UCT algorithm to choose its next move. It's default policy is the rollout policy depicted above. As you can see the MCTS snake acts somewhat unintuitively. It only goes for apples that are extremely nearby.
-  
-## ToDo List (If you contribute a new feature, please make a new java package (folder in the src file) and add its description to the README)
-- We could try to use Manhatten Distance as a "prior probability" and implement PUCT in hopes that our snakes would be more likely to go towards apples.
-- We must evaluate our final snake in a tournament against finalBot.AdderBoaCobra. 
-- We can optionally evaluate variations (or ablations) of our final snake against eachother and against finalBot.AdderBoaCobra. 
- 
+

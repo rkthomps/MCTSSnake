@@ -1,7 +1,3 @@
-Loaded bot.
-Loaded class name: mctsSnake.NaiveBot
-Loaded bot.
-Loaded class name: mctsSnake.RolloutBot
 iteration,winner,appleEaten0,appleEaten1,duration
 0,NaiveBot,4,3,47.286
 1,NaiveBot,3,2,23.73
@@ -20,7 +16,6 @@ iteration,winner,appleEaten0,appleEaten1,duration
 14,NaiveBot,1,0,22.303
 15,NaiveBot,2,1,18.054
 16,NaiveBot,2,3,22.308
-NaiveBot took too long to make a decision
 17,RolloutBot,0,0,4.45
 18,NaiveBot,2,1,13.804
 19,NaiveBot,2,2,35.84
@@ -34,19 +29,13 @@ NaiveBot took too long to make a decision
 27,NaiveBot,2,3,20.156
 28,NaiveBot,2,5,45.665
 29,NaiveBot,2,4,41.412
-Round time left (180seconds) 
-
 30,RolloutBot,11,12,181.6
-Round time left (180seconds) 
-
 31,RolloutBot,5,16,181.717
 32,NaiveBot,1,0,11.744
-NaiveBot took too long to make a decision
 33,RolloutBot,0,1,12.698
 34,NaiveBot,3,2,23.068
 35,tie,2,2,28.665
 36,NaiveBot,4,3,15.966
-NaiveBot took too long to make a decision
 37,RolloutBot,0,0,3.682
 38,NaiveBot,3,2,32.204
 39,NaiveBot,1,0,16.645
