@@ -37,13 +37,10 @@ We implement Monte Carlo Tree Search (MCTS) for the game Snakes. We focus on Sna
 
 
 ## Demos
-### Rollout-Policy-Guided Snake
-![](demos/rollout-policy-demo.gif)
+### PUCTBot vs TheBot
+![](demos/4x_uct_vs_puct.gif)
   
-*Notes*: By "rollout-policy" we mean that this snake is following the exact policy used to do MCTS rollouts. It proceeds to the square with
-  the smallest Manhatten distance to the apple. It does not go to squares where it will die with certainty unless there are no other options.
-
-### MCTS Snake
-![](demos/mcts-demo.gif)
+### RolloutBot vs NaiveBot
+![](demos/4x_naive_vs_rollout.gif)
   
 
