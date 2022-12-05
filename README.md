@@ -37,10 +37,10 @@ We implement Monte Carlo Tree Search (MCTS) for the game Snakes. We focus on Sna
 
 
 ## Demos
-### PUCTBot vs TheBot
+### TheBot (Blue) vs PUCTBot (White)
 ![](demos/4x_uct_vs_puct.gif)
   
-### RolloutBot vs NaiveBot
+### RolloutBot (Blue) vs NaiveBot (White)
 ![](demos/4x_naive_vs_rollout.gif)
   
 
