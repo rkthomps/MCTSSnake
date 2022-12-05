@@ -63,16 +63,14 @@ public class humanBot implements Bot {
             }
         });
 
-        /* uncomment for decision timer
-         *final double DECISION_TIME = 0.5e9;
-         *long startTime = System.nanoTime();
-         *long timeDelta;
-         *while(true){
-         *    timeDelta = System.nanoTime() - startTime;
-         *    if (timeDelta >= DECISION_TIME)
-         *        break;
-         *}
-         */
+        final double DECISION_TIME = 0.7e9;
+        long startTime = System.nanoTime();
+        long timeDelta;
+         while(true){
+             timeDelta = System.nanoTime() - startTime;
+             if (timeDelta >= DECISION_TIME)
+                 break;
+         }
 
         myJFrame.setVisible(true);
 
